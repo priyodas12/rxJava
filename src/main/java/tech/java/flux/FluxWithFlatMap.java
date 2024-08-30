@@ -13,7 +13,7 @@ public class FluxWithFlatMap {
   public Flux<String> getNameFlux () {
     return Flux.fromIterable (List.of ("robin", "xavier", "docker", "muller"))
         .map (String::toUpperCase)
-        .flatMap (this::splitString)
+        .flatMap (name -> Flux.fromArray (name.split ("")))
         .log ();
   }
 
